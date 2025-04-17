@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path. re-path
 from studentorg.views import (
     HomePageView,
     OrganizationList, OrganizationCreateView, OrganizationUpdateView, OrganizationDeleteView,
@@ -8,7 +8,7 @@ from studentorg.views import (
     CollegeList, CollegeCreateView, CollegeUpdateView, CollegeDeleteView,
     ProgramList, ProgramCreateView, ProgramUpdateView, ProgramDeleteView,
 )
-
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -21,12 +21,16 @@ urlpatterns = [
     path('organization_list/add/', OrganizationCreateView.as_view(), name='organization-add'),
     path('organization_list/<int:pk>/', OrganizationUpdateView.as_view(), name='organization-update'),
     path('organization_list/<int:pk>/delete/', OrganizationDeleteView.as_view(), name='organization-delete'),
+    re_path(r'^login/$', auth_views.LoginView.as_view(
+    template_name='login.html'), name='login'),
+    re_path(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
 
     # Organization member URLs
     path('orgMember_list/', OrgMemberList.as_view(), name='orgMem_list'),
     path('orgMember_list/add/', OrgMemberCreateView.as_view(), name='orgMem-add'),
     path('orgMember_list/<int:pk>/', OrgMemberUpdateView.as_view(), name='orgMem-update'),
     path('orgMember_list/<int:pk>/delete/', OrgMemberDeleteView.as_view(), name='orgMem-delete'),
+    
 
 
     # Student list

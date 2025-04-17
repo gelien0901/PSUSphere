@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path. re-path
+from django.urls import path. re_path
 from studentorg.views import (
     HomePageView,
     OrganizationList, OrganizationCreateView, OrganizationUpdateView, OrganizationDeleteView,

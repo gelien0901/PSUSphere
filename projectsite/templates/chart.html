@@ -15,7 +15,7 @@
   
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header"><div class="card-title">Scatter Chart</div></div>
+          <div class="card-header"><div class="card-title">Org members vs. Organization</div></div>
           <div class="card-body">
             <div class="chart-container">
               <canvas id="ScatterChart"></canvas>
@@ -29,7 +29,7 @@
     <div class="row equal-height mt-3">
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header"><div class="card-title">Doughnut Chart</div></div>
+          <div class="card-header"><div class="card-title">Number of Students per Program</div></div>
           <div class="card-body">
             <div class="chart-container">
               <canvas id="ProgramDoughnutChart"style="width: 50%; height: 50%"></canvas>
@@ -40,7 +40,7 @@
   
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header"><div class="card-title">Chart with HTML Legends</div></div>
+          <div class="card-header"><div class="card-title">HTML Legends Chart</div></div>
           <div class="card-body">
             <div class="chart-container">
               <canvas id="collegeChartLegend"></canvas>
@@ -53,7 +53,7 @@
   </div>
   <div class="col-md-12 col-lg-8 offset-lg-2">
     <div class="card">
-      <div class="card-header"><div class="card-title">Heatmap Chart</div></div>
+      <div class="card-header"><div class="card-title">Students count per Colleges</div></div>
       <div class="card-body">
         <div class="chart-container">
           <canvas id="heatmapChart"></canvas>
@@ -106,7 +106,7 @@
                 display: true,
                 text: 'Students per Program',
                 font: {
-                  size: 16,
+                  size: 10,
                   weight: 'bold'
                 }
               },
@@ -123,7 +123,7 @@
                 position: 'bottom',
                 labels: {
                   font: {
-                    size: 12
+                    size: 10
                   },
                   usePointStyle: true
                 }
@@ -167,7 +167,7 @@
                   display: true,
                   text: 'Organizations vs Org Members per College',
                   font: {
-                    size: 16,
+                    size: 10,
                     weight: 'bold'
                   }
                 },
@@ -202,76 +202,6 @@
         .catch((error) => console.error("Error loading scatter chart data:", error));
     });
   </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        fetch("{% url 'chart-data' %}")
-            .then(response => response.json())
-            .then(data => {
-                const labels = Object.keys(data);
-                const counts = Object.values(data);
-
-                var ctx = document.getElementById('PolarAreaChart').getContext('2d');
-                
-                new Chart(ctx, {
-                    type: 'polarArea',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            data: counts,
-                            backgroundColor: [
-                                "#1d7af3", "#f3545d", "#fdaf4b", "#fdff4b", "#a4e310", "#11c258"
-                            ],
-                            borderWidth: 0
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Members per Organization',
-                                color: 'rgb(80, 80, 80)',
-                                font: {
-                                    size: 16,
-                                    weight: 'bold'
-                                },
-                                padding: {
-                                    top: 10,
-                                    bottom: 30
-                                }
-                            },
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    color: 'rgb(154, 154, 154)',
-                                    font: {
-                                        size: 11
-                                    },
-                                    usePointStyle: true,
-                                    padding: 20
-                                }
-                            },
-                            tooltip: {
-                                enabled: true
-                            }
-                        },
-                        layout: {
-                            padding: {
-                                left: 20,
-                                right: 20,
-                                top: 20,
-                                bottom: 20
-                            }
-                        }
-                    }
-                });
-            })
-            .catch((error) => console.error("Error fetching chart data:", error));
-    });
-  </script>
-  
 
 
 <script>
